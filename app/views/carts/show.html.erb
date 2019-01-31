@@ -1,0 +1,32 @@
+<h1>我的購物車</h1>
+<%= link_to '清空購物車', cart_path, method: :delete, class: 'btn btn-danger btn-sm' %>
+
+<table class="table" style="margin-top: 20px">
+  <thead>
+    <tr>
+      <th width="80px">移除</th>
+      <th>名稱</th>
+      <th>單價</th>
+      <th>數量</th>
+      <th width="80px">小計</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% current_cart.items.each do |item| %>
+    <tr>
+      <td><%= link_to '移除商品', '#', class: 'btn btn-danger btn-sm' %></td>
+      <td><%= item.product.title %></td>
+      <td><%= item.product.price %></td>
+      <td><%= item.quantity %></td>
+      <td align="right"><%= item.price %></td>
+    </tr>
+    <% end %>
+  </tbody>
+  <ftooter>
+    <tr align="right">
+      <td colspan="5">總價: <%= current_cart.total_price %></td>
+    </tr>
+  </ftooter>
+</table>
+<%= link_to '返回商品列表', products_path, class: 'btn btn-success btn-sm' %>
+<%= link_to '結帳', checkout_cart_path, class: 'btn btn-danger btn-sm' unless current_cart.empty? %>
