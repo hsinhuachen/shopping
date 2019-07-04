@@ -1,14 +1,18 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.5.1'
+ruby '2.5.3'
 
 gem 'rails', '~> 5.2.0'
 gem 'sqlite3', git: "https://github.com/larskanis/sqlite3-ruby", branch: "add-gemspec"
 gem 'puma', '~> 3.11'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
-gem 'wdm', '>= 0.1.0'
+
+platforms :mswin do 
+  gem "wdm", :group => [:development, :test]
+end
+
 gem "braintree", "~> 2.89.0"
 gem 'aasm', '~> 4.12', '>= 4.12.3'
 
@@ -59,3 +63,5 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+
